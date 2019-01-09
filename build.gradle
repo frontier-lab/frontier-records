@@ -1,0 +1,56 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+group 'com.frontier-records'
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    def javaVersion = 1.8
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+    ext {
+        randomBeansVersion = '3.7.0'
+    }
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/libs-milestone" }
+        maven { url "http://repo.spring.io/libs-release" }
+        maven { url "http://nexus.nhnent.com/content/repositories/releases" }
+        maven { url "http://nexus.nhnent.com/content/repositories/snapshots" }
+        maven { url "http://nexus.nhnent.com/content/groups/public/" }
+    }
+
+    dependencies {
+        compile('org.springframework.boot:spring-boot-starter')
+        compile('org.projectlombok:lombok')
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+        testCompile "io.github.benas:random-beans:${randomBeansVersion}"
+    }
+
+    clean.doLast {
+        file('out').deleteDir()
+    }
+}

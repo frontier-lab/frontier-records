@@ -1,0 +1,29 @@
+group rootProject.group
+
+ext {
+}
+
+repositories {
+    maven { url "http://maven.twttr.com/" }
+}
+
+dependencies {
+    /* Web */
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-configuration-processor')
+
+    /* Devtools */
+    runtime('org.springframework.boot:spring-boot-devtools')
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+}
+
+
+bootRun {
+    sourceResources sourceSets.main
+    systemProperties = System.properties
+}
+
+bootJar {
+    mainClassName = 'com.frontier.records.admin.AdminApplication'
+}
+
