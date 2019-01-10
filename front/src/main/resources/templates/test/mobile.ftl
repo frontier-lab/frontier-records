@@ -5,5 +5,10 @@
 </@layout.script>
 
 <@layout.content>
-  MOBILE
+<div class="wrap">
+  <!-- container -->
+  <div class="container">
+    MOBILE
+  </div>
+</div>
 </@layout.content>

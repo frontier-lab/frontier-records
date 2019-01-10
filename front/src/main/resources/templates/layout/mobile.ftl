@@ -9,11 +9,7 @@
 </head>
 
 <body>
-<div class="wrap">
-  <!-- container -->
-  <div class="container">
-    <#nested>
-  </div>
+<#nested>
 </body>
 </html>
 </#macro>

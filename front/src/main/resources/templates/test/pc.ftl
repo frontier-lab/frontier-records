@@ -5,5 +5,10 @@
 </@layout.script>
 
 <@layout.content>
-  PC
+<div class="wrap">
+  <!-- container -->
+  <div class="container">
+    PC
+  </div>
+</div>
 </@layout.content>
