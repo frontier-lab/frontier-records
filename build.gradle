@@ -46,8 +46,7 @@ subprojects {
     dependencies {
         compile('org.projectlombok:lombok')
         compile('org.springframework.boot:spring-boot-starter')
-        testCompile('org.springframework.boot:spring-boot-starter-test')
-
+        testCompile('org.springframework.boot:spring-boot-starter-sample')
 
         /* Template */
         compile('org.springframework.boot:spring-boot-starter-freemarker')
