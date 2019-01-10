@@ -44,9 +44,14 @@ subprojects {
     }
 
     dependencies {
-        compile('org.springframework.boot:spring-boot-starter')
         compile('org.projectlombok:lombok')
+        compile('org.springframework.boot:spring-boot-starter')
         testCompile('org.springframework.boot:spring-boot-starter-test')
+
+
+        /* Template */
+        compile('org.springframework.boot:spring-boot-starter-freemarker')
+
         testCompile "io.github.benas:random-beans:${randomBeansVersion}"
     }
 

@@ -1,6 +1,8 @@
 group rootProject.group
 
 ext {
+    starterMobileVersion = '1.5.16.RELEASE'
+    guavaVersion = '24.1-jre'
 }
 
 repositories {
@@ -12,9 +14,15 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-configuration-processor')
 
+    /* Spring Mobile */
+    compile('org.springframework.mobile:spring-mobile-device:1.1.5.RELEASE')
+
     /* Devtools */
     runtime('org.springframework.boot:spring-boot-devtools')
     compile('org.springframework.boot:spring-boot-starter-actuator')
+
+
+    compile("com.google.guava:guava:${guavaVersion}")
 }
 
 
