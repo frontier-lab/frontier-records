@@ -4,7 +4,11 @@ spring:
     web:
       pageable:
         one-indexed-parameters: true
-  mvc:
-    static-path-pattern: /static/**
   resources:
-    static-locations: 'classpath:/static/'
+    static-locations: 'classpath:/app/dist/'
+  mvc:
+    static-path-pattern: /resources/**
+  thymeleaf:
+    enabled: true
+    prefix: 'classpath:/app/dist/'
+    suffix: .html

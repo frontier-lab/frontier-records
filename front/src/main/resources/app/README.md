@@ -8,4 +8,18 @@
     - trouble shooting
         - https://eharrow.github.io/yarn/2017/10/30/fixing-brew-yarn-upgrade-on-macosx/
     
-
+### Build
+ - start (for develop)
+    ```
+    npm install
+    npm run parcel
+    ```
+ - build (for production)
+    ```
+    npm install
+    npm run build
+    ```
+    
+### Info
+ - static source path
+    - /resources/**
