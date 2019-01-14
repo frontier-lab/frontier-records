@@ -9,6 +9,7 @@ import org.springframework.mobile.device.view.LiteDeviceDelegatingViewResolver;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
@@ -17,6 +18,8 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 @EnableWebMvc
 @SuppressWarnings("CheckStyle")
 public class WebMvcConfig implements WebMvcConfigurer {
+
+    private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {"classpath:/static/"};
 
     @Bean
     public DeviceResolverHandlerInterceptor deviceResolverHandlerInterceptor() {
@@ -34,6 +37,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
         FreeMarkerViewResolver delegate = new FreeMarkerViewResolver();
         delegate.setPrefix("");
         delegate.setSuffix(".ftl");
+        delegate.setCache(false);
+        delegate.setContentType("text/html;charset=UTF-8");
 
         LiteDeviceDelegatingViewResolver resolver = new LiteDeviceDelegatingViewResolver(delegate);
         resolver.setMobilePrefix("");
@@ -55,5 +60,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addArgumentResolvers(
         List<HandlerMethodArgumentResolver> argumentResolvers) {
         argumentResolvers.add(deviceHandlerMethodArgumentResolver());
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+            .addResourceHandler("/static/**")
+            .addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
     }
 }
