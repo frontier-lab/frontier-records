@@ -1,3 +1,5 @@
+# 공통 설정
+
 # Spring 설정
 spring:
   data:
@@ -8,3 +10,7 @@ spring:
     static-path-pattern: /static/**
   resources:
     static-locations: 'classpath:/static/'
+  http:
+    encoding:
+      charset: UTF-8
+      force: true

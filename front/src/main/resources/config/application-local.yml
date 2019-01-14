@@ -1,0 +1,6 @@
+# phase별 설정
+phase: local
+
+freemarker:
+  variables:
+    base_url: http://local-frontier-records.com

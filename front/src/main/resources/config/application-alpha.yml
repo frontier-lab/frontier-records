@@ -1,0 +1,6 @@
+# phase별 설정
+phase: alpha
+
+freemarker:
+  variables:
+    base_url: http://alpha-frontier-records.com
