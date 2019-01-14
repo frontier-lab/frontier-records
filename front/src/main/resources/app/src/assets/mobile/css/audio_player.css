@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+/* 팟티_메인오디오:오디오플레이어:상단컨트롤러 */
+.audio_player{position:relative;width:100%;height:97px} 
+.audio_player .sp:after{content:'';display:block;position:absolute;top:0;left:0;background:url(../img/sp_player.png) no-repeat;background-size:250px auto;font-size:0}
+.audio_player .player_mode{} 
+.audio_player .player_mode .remotebtn{position:absolute;top:50%;left:50%;z-index:30;width:34px;height:43px;margin-top:-44px;font-size:0}
+.audio_player .player_mode .remotebtn:after{width:34px;height:43px}
+.audio_player .player_mode .remotebtn.pause{margin-left:-17px;}
+.audio_player .player_mode .remotebtn.pause:after{background-position:-36px -77px}
+.audio_player .player_mode .remotebtn.play{margin-left:-13px}
+.audio_player .player_mode .remotebtn.play:after{background-position:0 -77px}
+.audio_player .player_mode .remotebtn.backward-10{margin-left:-94px}
+.audio_player .player_mode .remotebtn.backward-10:after{background-position:-144px -77px}
+.audio_player .player_mode .remotebtn.backward{margin-left:-158px}
+.audio_player .player_mode .remotebtn.backward:after{background-position:-72px -78px}
+.audio_player .player_mode .remotebtn.forward-10{margin-top:-45px;margin-left:59px}
+.audio_player .player_mode .remotebtn.forward-10:after{background-position:-180px -77px}
+.audio_player .player_mode .remotebtn.forward{margin-left:124px}
+.audio_player .player_mode .remotebtn.forward:after{background-position:-108px -78px}
+
+/* 팟티_메인오디오:오디오플레이어:하단컨트롤러 */
+.audio_player .player_ctrl{position:absolute;bottom:14px;left:0;z-index:30;width:100%}
+.audio_player .player_ctrl .ctrl_progress{position:relative;height:20px;margin:0 25px}
+.audio_player .player_ctrl .ctrl_progress .ctrl_progress_bar{display:inline-block;width:100%;height:2px;background:rgba(0,0,0,0.15);border-radius:2px;cursor:pointer}
+.audio_player .player_ctrl .ctrl_progress .ctrl_progress_bar .ctrl_progress_current{width:0;height:2px;background:#286ffa;border-radius:2px}
+.audio_player .player_ctrl .ctrl_progress .ctrl_progress_bar .ctrl_progress_handle{position:absolute;top:50%;left:0;width:20px;height:20px;margin-top:-7px}
+.audio_player .player_ctrl .ctrl_progress .ctrl_progress_bar .ctrl_progress_handle:after{top:0;left:0;width:20px;height:20px;background-position: -216px -77px;}
+/* .audio_player .player_ctrl .ctrl_progress .ctrl_progress_bar .ctrl_progress_handle:hover:after{background-position:-210px 0} */
+.audio_player .player_ctrl .ctrl_progress .ctrl_progress_time{position:absolute;top:20px;font-size:0;}
+.audio_player .player_ctrl .ctrl_progress .ctrl_progress_time span{font-size:12px;line-height:14px}
+.audio_player .player_ctrl .ctrl_progress .ctrl_progress_time.current {left:0;}
+.audio_player .player_ctrl .ctrl_progress .ctrl_progress_time.duration {right:0;}
+.audio_player .player_ctrl .ctrl_progress .ctrl_progress_time .time_current{color:#387bff}
+.audio_player .player_ctrl .ctrl_progress .ctrl_progress_time .time_duration{color:#a8a8a8}
