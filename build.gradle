@@ -1,6 +1,7 @@
 buildscript {
     ext {
         springBootVersion = '2.0.1.RELEASE'
+        webjarsLocatorVersion = '0.33'
     }
     repositories {
         mavenCentral()
@@ -46,12 +47,16 @@ subprojects {
     dependencies {
         compile('org.projectlombok:lombok')
         compile('org.springframework.boot:spring-boot-starter')
-        testCompile('org.springframework.boot:spring-boot-starter-sample')
+        testCompile('org.springframework.boot:spring-boot-starter-test')
 
         /* Template */
         compile('org.springframework.boot:spring-boot-starter-freemarker')
 
+        // RandomBeans
         testCompile "io.github.benas:random-beans:${randomBeansVersion}"
+
+        //Webjars
+        compile("org.webjars:webjars-locator:${webjarsLocatorVersion}")
     }
 
     clean.doLast {
