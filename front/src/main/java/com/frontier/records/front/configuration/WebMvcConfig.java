@@ -6,11 +6,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.mobile.device.DeviceHandlerMethodArgumentResolver;
 import org.springframework.mobile.device.DeviceResolverHandlerInterceptor;
+import org.springframework.mobile.device.view.LiteDeviceDelegatingViewResolver;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 import java.util.List;
 
@@ -19,6 +21,13 @@ import java.util.List;
 @EnableWebMvc
 @SuppressWarnings("CheckStyle")
 public class WebMvcConfig implements WebMvcConfigurer {
+
+    private static final String CLASSPATH_RESOURCE_LOCATIONS = "classpath:/static/";
+
+    @Value("${spring.resources.static-locations}")
+    private String staticResouceLocation;
+    @Value("${spring.mvc.static-path-pattern}")
+    private String staticResourcePathPattern;
 
     @Bean
     public DeviceResolverHandlerInterceptor deviceResolverHandlerInterceptor() {
@@ -31,22 +40,24 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
 
 
-//    @Bean
-//    public LiteDeviceDelegatingViewResolver liteDeviceAwareViewResolver() {
-//        FreeMarkerViewResolver delegate = new FreeMarkerViewResolver();
-//        delegate.setPrefix("");
-//        delegate.setSuffix(".ftl");
-//
-//        LiteDeviceDelegatingViewResolver resolver = new LiteDeviceDelegatingViewResolver(delegate);
-//        resolver.setMobilePrefix("");
-//        resolver.setMobileSuffix("/mobile");
-//        resolver.setNormalPrefix("");
-//        resolver.setNormalSuffix("/pc");
-//        resolver.setTabletPrefix("");
-//        resolver.setTabletSuffix("/mobile");
-//
-//        return resolver;
-//    }
+    //TODO freemarker will be remove after apply react
+    @Bean
+    public LiteDeviceDelegatingViewResolver liteDeviceAwareViewResolver() {
+        FreeMarkerViewResolver delegate = new FreeMarkerViewResolver();
+        delegate.setPrefix("");
+        delegate.setSuffix(".ftl");
+        delegate.setCache(false);
+        delegate.setContentType("text/html;charset=UTF-8");
+
+        LiteDeviceDelegatingViewResolver resolver = new LiteDeviceDelegatingViewResolver(delegate);
+        resolver.setMobilePrefix("");
+        resolver.setMobileSuffix("/mobile");
+        resolver.setNormalPrefix("");
+        resolver.setNormalSuffix("/pc");
+        resolver.setTabletPrefix("");
+        resolver.setTabletSuffix("/mobile");
+        return resolver;
+    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -59,14 +70,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
         argumentResolvers.add(deviceHandlerMethodArgumentResolver());
     }
 
-    @Value("${spring.resources.static-locations}")
-    private String staticResouceLocation;
-    @Value("${spring.mvc.static-path-pattern}")
-    private String staticResourcePathPattern;
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(staticResourcePathPattern).addResourceLocations(staticResouceLocation);
+        //TODO path 'static' will be remove after apply react
+        registry
+                .addResourceHandler(staticResourcePathPattern, "/static/**")
+                .addResourceLocations(staticResouceLocation, CLASSPATH_RESOURCE_LOCATIONS);
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 }

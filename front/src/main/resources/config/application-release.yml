@@ -1,0 +1,6 @@
+# phase별 설정
+phase: release
+
+freemarker:
+  variables:
+    base_url: http://frontier-records.com
