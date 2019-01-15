@@ -49,9 +49,6 @@ subprojects {
         compile('org.springframework.boot:spring-boot-starter')
         testCompile('org.springframework.boot:spring-boot-starter-test')
 
-        /* Template */
-        compile('org.springframework.boot:spring-boot-starter-freemarker')
-
         // RandomBeans
         testCompile "io.github.benas:random-beans:${randomBeansVersion}"
 
