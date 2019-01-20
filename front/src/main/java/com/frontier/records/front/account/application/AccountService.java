@@ -36,11 +36,25 @@ public class AccountService {
     }
 
     public Mono<RegisterResponse> register(RegisterRequest registerRequest) {
-        if (accountRepository.findAccountById(registerRequest.getId()) != null) {
+        Mono<Account> accountMonoById = Mono.just(registerRequest.getId())
+                                            .map(accountRepository::findAccountById)
+                                            .onErrorResume(d -> Mono.just(Account.empty()));
+        Mono<Account> accountMonoByEmail = Mono.just(registerRequest.getEmail())
+                                               .map(accountRepository::findAccountByEmail)
+                                               .onErrorResume(d -> Mono.just(Account.empty()));
+
+        return Mono.zip(accountMonoById, accountMonoByEmail, (accountById, accountByEmail) -> saveAccountIfNotExist(accountById, accountByEmail, registerRequest))
+                   .doOnError(throwable -> {
+                       throw new RegisterException(throwable);
+                   });
+    }
+
+    private RegisterResponse saveAccountIfNotExist(Account accountById, Account accountByEmail, RegisterRequest registerRequest) {
+        if (!accountById.isEmpty()) {
             throw new RegisterException(RegisterResult.ID_DUPLICATED);
         }
 
-        if (accountRepository.findAccountByEmail(registerRequest.getEmail()) != null) {
+        if (!accountByEmail.isEmpty()) {
             throw new RegisterException(RegisterResult.EMAIL_DUPLICATED);
         }
 
@@ -50,6 +64,6 @@ public class AccountService {
         account.verifyName();
         accountRepository.save(account);
 
-        return Mono.just(RegisterResponse.create(RegisterResult.REGISTERED));
+        return RegisterResponse.create(RegisterResult.REGISTERED);
     }
 }

@@ -129,4 +129,12 @@ public class Account {
             throw new LogInException(LogInResult.DELETED);
         }
     }
+
+    public static Account empty() {
+        return new Account();
+    }
+
+    public boolean isEmpty() {
+        return this.idNo == null;
+    }
 }
