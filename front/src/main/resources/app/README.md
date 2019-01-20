@@ -12,7 +12,7 @@
  - start (for develop)
     ```
     npm install
-    npm run parcel
+    npm run start
     ```
  - build (for production)
     ```

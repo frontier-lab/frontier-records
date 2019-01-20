@@ -1,0 +1,13 @@
+﻿@charset "utf-8";
+
+.error .content {width:460px;margin:0 auto;text-align:center;}
+.error .content h3{margin-top:100px;padding-top:143px;color:#000;font-size:24px;font-weight:bold;line-height:32px;}
+.error .content .txt{margin-top:13px;color:#a4a6ab;font-size:16px;line-height:22px;}
+.error .content .btn_area{margin-top:37px;font-size:0;}
+.error .content .btn_area span{display:inline-block;width:200px;height:52px;border-radius:2px;font-size:18px;line-height:52px;text-align:center;}
+.error .content .btn_area .submit span{border:1px solid #286ffa;background:#286ffa;color:#fff;}
+.error .content .btn_area .cancel{margin-left:13px;}
+.error .content .btn_area .cancel span{border:1px solid #d4d4d4;background:#fff;color:#3f3f3f}
+
+.error.system h3{background:url(../img/icon_error_failure.png) no-repeat center 0;}
+.error.service h3{background:url(../img/icon_error_service.png) no-repeat center 0;}

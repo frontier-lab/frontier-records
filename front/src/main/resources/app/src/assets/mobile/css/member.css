@@ -1279,6 +1279,12 @@
   background-position: -184px -186px
 }
 
+.login_cnt .btn_area .btn_login {
+  background: #97fffc;
+  border: 1px solid rgba(62, 96, 170, 0);
+  color: #1816aa
+}
+
 .login_cnt .btn_area .btn_facebook_login {
   background: #ffffff;
   border: 1px solid #3e60aa;
@@ -1301,6 +1307,103 @@
   padding-left: 6px;
   font-weight: bold;
   color: #000000
+}
+
+.login_cnt .input_area {
+  padding: 30px 25px 0 24px
+}
+
+.login_cnt .input_area .tit {
+  text-align: left;
+  font-size: 15px;
+  color: #838588
+}
+
+.login_cnt .input_area .input_box {
+  position: relative;
+  padding: 0 0 0 0
+}
+
+.login_cnt .input_area .input_wrap {
+  margin-top: 3px
+}
+
+.login_cnt .input_area .input_wrap.info .input_box {
+  border-bottom: 1px solid #e6e8eb
+}
+
+.login_cnt .input_area .input_wrap.edit .input_box {
+  border-bottom: 1px solid #286ffa
+}
+
+.login_cnt .input_area .input_wrap.error .input_box {
+  border-bottom: 1px solid #ff040a
+}
+
+.login_cnt .input_area .input_box .input {
+  overflow: hidden;
+  height: 40px;
+  font-size: 19px;
+  line-height: 40px
+}
+
+.login_cnt .input_area .input_box .input.inp_wrap {
+  margin-right: 0
+}
+
+.login_cnt .input_area .input_box .input_email {
+  overflow-y: hidden;
+  width: 100%;
+  border: 0;
+  box-sizing: border-box;
+  font-size: 19px;
+  color: #000000;
+  line-height: 23px;
+  vertical-align: middle
+}
+
+.login_cnt .input_area .input_box .input_email::-webkit-input-placeholder {
+  color: #ccced3
+}
+
+@media screen and (max-width: 350px) {
+  .login_cnt .input_area .input_box .input_email {
+    letter-spacing: -1px;
+  }
+}
+
+.login_cnt .input_area .input_guide {
+  margin-top: 11px
+}
+
+.login_cnt .input_area .input_guide li {
+  padding-left: 10px;
+  background: url('../img/blt_dot.gif') 0 8px no-repeat;
+  font-size: 13px;
+  color: #838588;
+  line-height: 18px
+}
+
+.login_cnt .input_area .input_guide li.error {
+  background: url('../img/blt_dot_red.gif') 0 8px no-repeat;
+  color: #ff040a
+}
+
+.login_cnt .input_area .btn_area {
+  position: absolute;
+  bottom: 6px;
+  right: 0
+}
+
+.login_cnt .input_area .btn_area button {
+  height: 28px;
+  margin-left: 2px;
+  padding: 0 10px;
+  border: 1px solid #d0d3d6;
+  border-radius: 2px;
+  font-size: 13px;
+  line-height: 12px;
+  text-align: center
 }
 
 /* 공지사항 */

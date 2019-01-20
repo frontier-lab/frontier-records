@@ -1,10 +1,7 @@
-console.log('Hello Parcel Project');
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './css/main.css'
-import App from './App';
+import App from './component/pc/App';
 import * as serviceWorker from './component/serviceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
