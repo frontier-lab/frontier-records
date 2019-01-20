@@ -43,13 +43,30 @@ public class AccountService {
                                                .map(accountRepository::findAccountByEmail)
                                                .onErrorResume(d -> Mono.just(Account.empty()));
 
-        return Mono.zip(accountMonoById, accountMonoByEmail, (accountById, accountByEmail) -> saveAccountIfNotExist(accountById, accountByEmail, registerRequest))
+        return Mono.zip(accountMonoById,
+                        accountMonoByEmail,
+                        (accountById, accountByEmail) -> {
+                            verifyDuplication(accountById, accountByEmail);
+                            return registerRequest;
+                        })
+                   .map(request -> {
+                       accountRepository.save(convertRegisterRequestToAccountIfValid(registerRequest));
+                       return RegisterResponse.create(RegisterResult.REGISTERED);
+                   })
                    .doOnError(throwable -> {
                        throw new RegisterException(throwable);
                    });
     }
 
-    private RegisterResponse saveAccountIfNotExist(Account accountById, Account accountByEmail, RegisterRequest registerRequest) {
+    private Account convertRegisterRequestToAccountIfValid(RegisterRequest registerRequest) {
+        Account account = Account.create(registerRequest);
+        account.verifyPassword();
+        account.verifyEmail();
+        account.verifyName();
+        return account;
+    }
+
+    private void verifyDuplication(Account accountById, Account accountByEmail) {
         if (!accountById.isEmpty()) {
             throw new RegisterException(RegisterResult.ID_DUPLICATED);
         }
@@ -57,13 +74,5 @@ public class AccountService {
         if (!accountByEmail.isEmpty()) {
             throw new RegisterException(RegisterResult.EMAIL_DUPLICATED);
         }
-
-        Account account = Account.create(registerRequest);
-        account.verifyPassword();
-        account.verifyEmail();
-        account.verifyName();
-        accountRepository.save(account);
-
-        return RegisterResponse.create(RegisterResult.REGISTERED);
     }
 }
