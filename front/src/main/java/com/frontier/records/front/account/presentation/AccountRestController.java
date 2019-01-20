@@ -3,6 +3,8 @@ package com.frontier.records.front.account.presentation;
 import com.frontier.records.front.account.application.AccountService;
 import com.frontier.records.front.account.dto.LogInRequest;
 import com.frontier.records.front.account.dto.LogInResponse;
+import com.frontier.records.front.account.dto.RegisterRequest;
+import com.frontier.records.front.account.dto.RegisterResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +28,7 @@ public class AccountRestController {
     }
 
     @GetMapping("/register")
-    public void register() {
-        accountService.register();
+    public Mono<RegisterResponse> register(RegisterRequest registerRequest) {
+        return accountService.register(registerRequest);
     }
 }

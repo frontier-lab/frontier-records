@@ -1,6 +1,6 @@
 package com.frontier.records.front.account.dto;
 
-import com.frontier.records.front.account.model.Account;
+import com.frontier.records.front.account.model.Account.LogInResult;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,7 +13,7 @@ public class LogInResponse {
     private final boolean successful;
     private final String message;
 
-    public static LogInResponse create(Account.LogInResult logInResult) {
+    public static LogInResponse create(LogInResult logInResult) {
         return new LogInResponse(logInResult.isSuccessful(),
                                  logInResult.getMessage());
     }
