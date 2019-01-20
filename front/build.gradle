@@ -3,6 +3,8 @@ group rootProject.group
 ext {
     starterMobileVersion = '1.5.16.RELEASE'
     guavaVersion = '24.1-jre'
+    swagger2Version = '2.8.0'
+    reactorSpringCoreVersion = '2.0.4.RELEASE'
 }
 
 repositories {
@@ -22,8 +24,16 @@ dependencies {
     runtime('org.springframework.boot:spring-boot-devtools')
     compile('org.springframework.boot:spring-boot-starter-actuator')
 
+    /* JPA */
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
 
+    /* Guava */
     compile("com.google.guava:guava:${guavaVersion}")
+
+    /* H2 TODO: MySql로 바꿀 것 */
+    runtime('com.h2database:h2')
+
+    compile("io.projectreactor.spring:reactor-spring-core:${reactorSpringCoreVersion}")
 }
 
 
