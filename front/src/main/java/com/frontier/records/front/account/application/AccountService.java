@@ -33,10 +33,10 @@ public class AccountService {
     }
 
     public Mono<RegisterResult> register(RegisterRequest registerRequest) {
-        verifyAccountByIdDuplication(registerRequest.getId());
-        verifyAccountByEmailDuplication(registerRequest.getEmail());
         return Mono.just(registerRequest)
                    .map(request -> {
+                       verifyAccountByIdDuplication(registerRequest.getId());
+                       verifyAccountByEmailDuplication(registerRequest.getEmail());
                        Account account = Account.create(registerRequest);
                        account.verify();
                        accountRepository.save(account);
