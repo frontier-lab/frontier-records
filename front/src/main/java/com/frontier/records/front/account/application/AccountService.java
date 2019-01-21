@@ -6,8 +6,8 @@ import com.frontier.records.front.account.exception.LogInException.NoAccountExce
 import com.frontier.records.front.account.exception.RegisterException.DuplicatedEmailException;
 import com.frontier.records.front.account.exception.RegisterException.DuplicatedIdException;
 import com.frontier.records.front.account.model.Account;
-import com.frontier.records.front.account.model.Account.LogInResult;
-import com.frontier.records.front.account.model.Account.RegisterResult;
+import com.frontier.records.front.account.model.LogInResult;
+import com.frontier.records.front.account.model.RegisterResult;
 import com.frontier.records.front.account.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

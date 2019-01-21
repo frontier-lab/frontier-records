@@ -1,7 +1,7 @@
 package com.frontier.records.front.account.dto;
 
 import com.frontier.records.front.account.exception.RegisterException;
-import com.frontier.records.front.account.model.Account.RegisterResult;
+import com.frontier.records.front.account.model.RegisterResult;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

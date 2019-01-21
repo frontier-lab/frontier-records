@@ -1,6 +1,6 @@
 package com.frontier.records.front.account.exception;
 
-import com.frontier.records.front.account.model.Account.RegisterResult;
+import com.frontier.records.front.account.model.RegisterResult;
 import lombok.Getter;
 
 @Getter

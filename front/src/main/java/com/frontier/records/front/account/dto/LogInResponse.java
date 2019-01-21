@@ -1,7 +1,7 @@
 package com.frontier.records.front.account.dto;
 
 import com.frontier.records.front.account.exception.LogInException;
-import com.frontier.records.front.account.model.Account.LogInResult;
+import com.frontier.records.front.account.model.LogInResult;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
