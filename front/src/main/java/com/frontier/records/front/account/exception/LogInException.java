@@ -1,31 +1,44 @@
 package com.frontier.records.front.account.exception;
 
-import com.frontier.records.front.account.model.Account;
-import com.frontier.records.front.account.model.Account.LogInResult;
+import com.frontier.records.front.account.model.LogInResult;
 import lombok.Getter;
 
 @Getter
 public class LogInException extends AccountException {
 
-    private final Account.LogInResult result;
-    private final Object[] args;
+    private LogInResult result;
+    private Object[] args;
 
-    public LogInException(Account.LogInResult result) {
+    LogInException(LogInResult result, Object[] args) {
         this.result = result;
-        this.args = null;
+        this.args = args;
     }
 
-    public LogInException(Throwable throwable) {
-        if (throwable instanceof NullPointerException) {
-            this.result = LogInResult.NO_ACCOUNT;
-            this.args = null;
-        } else if (throwable instanceof LogInException) {
-            LogInException e = (LogInException) throwable;
-            this.result = e.getResult();
-            this.args = e.getArgs();
-        } else {
-            this.result = LogInResult.UNKNOWN;
-            this.args = null;
+    public static class NoAccountException extends LogInException {
+
+        public NoAccountException() {
+            super(LogInResult.NO_ACCOUNT, null);
+        }
+    }
+
+    public static class PasswordMissMatchedException extends LogInException {
+
+        public PasswordMissMatchedException() {
+            super(LogInResult.PASSWORD_MISS_MATCHED, null);
+        }
+    }
+
+    public static class DeactivatedAccountException extends LogInException {
+
+        public DeactivatedAccountException() {
+            super(LogInResult.DEACTIVATED, null);
+        }
+    }
+
+    public static class DeletedAccountException extends LogInException {
+
+        public DeletedAccountException() {
+            super(LogInResult.DELETED, null);
         }
     }
 }
