@@ -1,8 +1,11 @@
 package com.frontier.records.front.account.model;
 
 import com.frontier.records.front.account.dto.RegisterRequest;
-import com.frontier.records.front.account.exception.LogInException;
-import com.frontier.records.front.account.exception.RegisterException;
+import com.frontier.records.front.account.exception.LogInException.DeactivatedAccountException;
+import com.frontier.records.front.account.exception.LogInException.DeletedAccountException;
+import com.frontier.records.front.account.exception.LogInException.PasswordMissMatchedException;
+import com.frontier.records.front.account.exception.RegisterException.BadEmailFormatException;
+import com.frontier.records.front.account.exception.RegisterException.BadPasswordFormatException;
 import java.time.ZonedDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -98,19 +101,19 @@ public class Account {
 
     public void verifyPassword(String password) {
         if (!this.password.equals(password)) {
-            throw new LogInException(LogInResult.PASSWORD_MISS_MATCHED);
+            throw new PasswordMissMatchedException();
         }
     }
 
     public void verifyPassword() {
         if (this.password.length() < 8) {
-            throw new RegisterException(RegisterResult.BAD_PASSWORD_FORMAT);
+            throw new BadPasswordFormatException();
         }
     }
 
     public void verifyEmail() {
-        if (!this.email.contains("@") && !this.email.contains(".")) {
-            throw new RegisterException(RegisterResult.BAD_EMAIL_FORMAT);
+        if (!this.email.contains("@") || !this.email.contains(".")) {
+            throw new BadEmailFormatException();
         }
     }
 
@@ -120,13 +123,13 @@ public class Account {
 
     public void verifyActivation() {
         if (this.deactivated) {
-            throw new LogInException(LogInResult.DEACTIVATED);
+            throw new DeactivatedAccountException();
         }
     }
 
     public void verifyDeletion() {
         if (this.deleted) {
-            throw new LogInException(LogInResult.DELETED);
+            throw new DeletedAccountException();
         }
     }
 
