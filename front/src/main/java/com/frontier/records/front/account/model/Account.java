@@ -75,25 +75,31 @@ public class Account {
         return this.idNo == null;
     }
 
+    public void verify() {
+        verifyPassword();
+        verifyEmail();
+        verifyName();
+    }
+
     public void verifyPassword(String password) {
         if (!this.password.equals(password)) {
             throw new PasswordMissMatchedException();
         }
     }
 
-    public void verifyPassword() {
+    private void verifyPassword() {
         if (this.password.length() < 8) {
             throw new BadPasswordFormatException();
         }
     }
 
-    public void verifyEmail() {
+    private void verifyEmail() {
         if (!this.email.contains("@") || !this.email.contains(".")) {
             throw new BadEmailFormatException();
         }
     }
 
-    public void verifyName() {
+    private void verifyName() {
 
     }
 

@@ -37,7 +37,9 @@ public class AccountService {
         verifyAccountByEmailDuplication(registerRequest.getEmail());
         return Mono.just(registerRequest)
                    .map(request -> {
-                       accountRepository.save(convertRegisterRequestToAccountIfValid(registerRequest));
+                       Account account = Account.create(registerRequest);
+                       account.verify();
+                       accountRepository.save(account);
                        return RegisterResult.REGISTERED;
                    });
     }
@@ -52,13 +54,5 @@ public class AccountService {
         if (accountRepository.findAccountByEmail(email).isPresent()) {
             throw new DuplicatedEmailException();
         }
-    }
-
-    private Account convertRegisterRequestToAccountIfValid(RegisterRequest registerRequest) {
-        Account account = Account.create(registerRequest);
-        account.verifyPassword();
-        account.verifyEmail();
-        account.verifyName();
-        return account;
     }
 }
