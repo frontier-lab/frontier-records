@@ -1,4 +1,6 @@
 # 공통 설정
+server:
+  port: 9000
 
 # Spring 설정
 spring:
@@ -18,3 +20,16 @@ spring:
     encoding:
       charset: UTF-8
       force: true
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+# OAuth 설정
+oauth:
+  payco:
+    web-client-id: 3RDOraa9q8A6hfXrxusp
+    web-client-secret: JQxRCuQBq1piOu2M73y0OU2W
+    check-token-url: https://apis3.krp.toastoven.net/payco/friends/getIdNoByFriendsToken.json
+    user-profile-by-token-url: https://apis3.krp.toastoven.net/payco/friends/getMemberProfileByFriendsToken.json
+    issue-token-url-template: https://id.payco.com/oauth2.0/token?grant_type=authorization_code&client_id={clientId}&client_secret={clientSecret}&code={authorizationCode}
+    login-url-template: https://id.payco.com/oauth2.0/authorize?response_type=code&client_id={clientId}&redirect_uri={redirectUrl}&serviceProviderCode=FRIENDS&state=ab42ae&userLocale=ko_KR
