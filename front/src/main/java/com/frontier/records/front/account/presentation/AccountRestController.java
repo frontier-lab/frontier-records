@@ -8,7 +8,8 @@ import com.frontier.records.front.account.dto.RegisterResponse;
 import com.frontier.records.front.account.exception.LogInException;
 import com.frontier.records.front.account.exception.RegisterException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
@@ -18,22 +19,22 @@ import reactor.core.publisher.Mono;
  * 멤버 APIs
  */
 @SuppressWarnings("CheckStyle")
-@RequestMapping("/api/member")
+@RequestMapping("/api/account")
 @RestController
 @RequiredArgsConstructor
 public class AccountRestController {
 
     private final AccountService accountService;
 
-    @GetMapping("/log-in")
-    public Mono<LogInResponse> logIn(LogInRequest logInRequest) {
+    @PostMapping("/log-in")
+    public Mono<LogInResponse> logIn(@RequestBody LogInRequest logInRequest) {
         return accountService.logIn(logInRequest)
                              .map(LogInResponse::create)
                              .onErrorResume(LogInException.class, e -> Mono.just(LogInResponse.createFromLoginException(e)));
     }
 
-    @GetMapping("/register")
-    public Mono<RegisterResponse> register(RegisterRequest registerRequest) {
+    @PostMapping("/register")
+    public Mono<RegisterResponse> register(@RequestBody RegisterRequest registerRequest) {
         return accountService.register(registerRequest)
                              .map(RegisterResponse::create)
                              .onErrorResume(RegisterException.class, e -> Mono.just(RegisterResponse.createFromRegisterException(e)));
