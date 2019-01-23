@@ -4,7 +4,6 @@ import com.frontier.records.front.account.dto.LogInRequest;
 import com.frontier.records.front.account.dto.RegisterRequest;
 import com.frontier.records.front.account.exception.LogInException.NoAccountException;
 import com.frontier.records.front.account.exception.RegisterException.DuplicatedEmailException;
-import com.frontier.records.front.account.exception.RegisterException.DuplicatedIdException;
 import com.frontier.records.front.account.model.Account;
 import com.frontier.records.front.account.model.LogInResult;
 import com.frontier.records.front.account.model.RegisterResult;
@@ -21,8 +20,8 @@ public class AccountService {
     private final AccountRepository accountRepository;
 
     public Mono<LogInResult> logIn(LogInRequest logInRequest) {
-        return Mono.just(logInRequest.getId())
-                   .map(accountRepository::findAccountById)
+        return Mono.just(logInRequest.getEmail())
+                   .map(accountRepository::findAccountByEmail)
                    .doOnNext(accountOptional -> {
                        Account account = accountOptional.orElseThrow(NoAccountException::new);
                        account.verifyPassword(logInRequest.getPassword());
@@ -35,19 +34,12 @@ public class AccountService {
     public Mono<RegisterResult> register(RegisterRequest registerRequest) {
         return Mono.just(registerRequest)
                    .map(request -> {
-                       verifyAccountByIdDuplication(registerRequest.getId());
                        verifyAccountByEmailDuplication(registerRequest.getEmail());
                        Account account = Account.create(registerRequest);
                        account.verify();
                        accountRepository.save(account);
                        return RegisterResult.REGISTERED;
                    });
-    }
-
-    private void verifyAccountByIdDuplication(String id) {
-        if (accountRepository.findAccountById(id).isPresent()) {
-            throw new DuplicatedIdException();
-        }
     }
 
     private void verifyAccountByEmailDuplication(String email) {
