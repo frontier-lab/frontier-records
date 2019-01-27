@@ -9,7 +9,7 @@ import org.thymeleaf.util.StringUtils;
 public class MainController {
 
     @GetMapping("**")
-    public String main(@RequestParam(value = "mobile", required = false) String mobile) {
-        return StringUtils.isEmpty(mobile) ? "index" : "index-mobile";
+    public String main(@RequestParam(value="pc", required = false) String pc) {
+        return StringUtils.isEmpty(pc) ? "index-mobile" : "index";
     }
 }
