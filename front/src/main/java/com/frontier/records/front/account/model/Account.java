@@ -38,8 +38,8 @@ public class Account {
     @Column(name = "nickname", nullable = false, unique = true)
     private String id;
 
-    @Column(name = "payco_id_no", nullable = true, unique = true)
-    private PaycoAccount paycoAccount;
+//    @Column(name = "payco_id_no", nullable = true, unique = true)
+//    private PaycoAccount paycoAccount;
 
     @Column(name = "deactivated", nullable = false)
     private boolean deactivated;
