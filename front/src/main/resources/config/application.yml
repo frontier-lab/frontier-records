@@ -24,6 +24,17 @@ spring:
     serialization:
       fail-on-empty-beans: false
 
+# LogInSession
+session:
+  keys:
+    payco-id-no: PAYCO_ID_NO
+
+# Redirect URLs
+redirect-urls:
+  home: http://local-www.frontier-records.com
+  log-in: http://local-www.frontier-records.com/log-in
+  sign-up: http://local-www.frontier-records.com/sign-up
+
 # OAuth 설정
 oauth:
   payco:
@@ -33,3 +44,5 @@ oauth:
     user-profile-by-token-url: https://apis3.krp.toastoven.net/payco/friends/getMemberProfileByFriendsToken.json
     issue-token-url-template: https://id.payco.com/oauth2.0/token?grant_type=authorization_code&client_id={clientId}&client_secret={clientSecret}&code={authorizationCode}
     login-url-template: https://id.payco.com/oauth2.0/authorize?response_type=code&client_id={clientId}&redirect_uri={redirectUrl}&serviceProviderCode=FRIENDS&state=ab42ae&userLocale=ko_KR
+
+## 페이코로 로그인 시 페이지 : https://id.payco.com/oauth2.0/authorize?response_type=code&client_id=3RDOraa9q8A6hfXrxusp&redirect_uri=http://local-www.frontier-records.com:9000/oauth/payco/log-in&serviceProviderCode=FRIENDS&state=ab42ae&userLocale=ko_KR
