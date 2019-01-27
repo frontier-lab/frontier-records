@@ -1,6 +1,8 @@
 # phase별 설정
 phase: release
 
-freemarker:
-  variables:
-    base_url: http://frontier-records.com
+# DataSource 설정
+
+# OAuth 설정
+oauth:
+  base-url: http://www.frontier-record.com

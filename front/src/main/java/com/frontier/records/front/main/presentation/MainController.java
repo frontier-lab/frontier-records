@@ -12,5 +12,4 @@ public class MainController {
     public String main(@RequestParam(value="pc", required = false) String pc) {
         return StringUtils.isEmpty(pc) ? "index-mobile" : "index";
     }
-    
 }

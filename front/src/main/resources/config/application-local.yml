@@ -1,8 +1,9 @@
 # phase별 설정
 phase: local
 
-freemarker:
-  variables:
-    base_url: http://local-frontier-records.com
-
+# DataSource 설정
 spring.datasource.url: jdbc:h2:mem:AZ;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+
+# OAuth 설정
+oauth:
+  base-url: http://local-www.frontier-record.com:9000

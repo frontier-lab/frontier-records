@@ -22,12 +22,12 @@ import lombok.NonNull;
 public class Account {
 
     @Id
-    @Column(name = "id_no", nullable = false, unique = true)
+    @Column(name = "account_seq", nullable = false, unique = true)
     @GeneratedValue
-    private Long idNo;
+    private Long accountSeq;
 
-    @Column(name = "id", nullable = false, unique = true)
-    private String id;
+    @Column(name = "email", nullable = false)
+    private String email;
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -35,8 +35,11 @@ public class Account {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "email", nullable = false)
-    private String email;
+    @Column(name = "nickname", nullable = false, unique = true)
+    private String id;
+
+    @Column(name = "payco_id_no", nullable = true, unique = true)
+    private PaycoAccount paycoAccount;
 
     @Column(name = "deactivated", nullable = false)
     private boolean deactivated;
@@ -56,10 +59,10 @@ public class Account {
 
     public static Account create(@NonNull RegisterRequest registerRequest) {
         Account account = new Account();
-        account.id = registerRequest.getId();
+        account.email = registerRequest.getEmail();
         account.password = registerRequest.getPassword();
         account.name = registerRequest.getName();
-        account.email = registerRequest.getEmail();
+        account.id = registerRequest.getNickname();
         account.deleted = false;
         account.deactivated = false;
         account.registerDateTime = ZonedDateTime.now();
@@ -72,7 +75,7 @@ public class Account {
     }
 
     public boolean isEmpty() {
-        return this.idNo == null;
+        return this.accountSeq == null;
     }
 
     public void verify() {
