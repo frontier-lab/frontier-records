@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
+
 import { isEqual, isEmpty } from 'lodash';
 import { validate } from 'email-validator';
 import LoginInput from "./login-input";
 import SignupTerm from "./signup-term";
+
+import * as Alert from '../../common/alert';
+import { register } from '../../common/api/account';
+import { checkResultAndRedirect } from '../../common/api/common'
 
 class Signup extends Component {
 
@@ -13,6 +19,8 @@ class Signup extends Component {
         name: false,
     };
 
+    initSignupBtnClass = "btn_join";
+
     constructor(props) {
         super(props);
         this.state = {
@@ -20,7 +28,9 @@ class Signup extends Component {
             password: "",
             passwordConfirm: "",
             name: "",
-            showErrorGuide: Object.assign({}, this.initShowErrorGuide)
+            showErrorGuide: Object.assign({}, this.initShowErrorGuide),
+            signupBtnClass: this.initSignupBtnClass
+
         };
     }
 
@@ -45,7 +55,7 @@ class Signup extends Component {
 
     validatePassword = () => {
         let errorGuide = this.state.showErrorGuide;
-        errorGuide.password = isEmpty(this.state.password);
+        errorGuide.password = isEmpty(this.state.password) || this.state.password.length < 8;
         this.setState({showErrorGuide: errorGuide});
         return errorGuide.password;
     };
@@ -66,12 +76,23 @@ class Signup extends Component {
         return hasEmailError || hasNameError || hasPasswordError || hasPasswordMatchedError
     };
 
+    signupBtnClass = () => {
+        return isEmpty(this.state.email)
+            || isEmpty(this.state.name)
+            || isEmpty(this.state.password)
+            || isEmpty(this.state.passwordConfirm)
+        ? this.initSignupBtnClass
+        : this.initSignupBtnClass + " on";
+    };
+
     onSignup = () => {
         if (this.validateForm()) {
             return ;
         }
-        let url = "/api/member/log-in?id=" + this.state.email + "&password=" + this.state.password;
-        console.log('request account url: ', url);
+        register(this.state.email, this.state.password, this.state.name)
+        .then(res => res.ok? res.json(): (() => {throw res})())
+        .then(res => checkResultAndRedirect(res, "/log-in", this.props.history)
+            , err => {console.log(err); Alert.error('알 수 없는 에러가 발생했습니다.')});
     };
 
     render() {
@@ -93,7 +114,7 @@ class Signup extends Component {
                                         value={this.state.password}
                                         handleChange={this.changePassword}
                                         showErrorGuide={this.state.showErrorGuide.password}
-                                        errorGuide={["한글, 영문, 숫자로 15자리까지 가능합니다."]}/>
+                                        errorGuide={["한글, 영문, 숫자로 15자리까지 가능합니다.", "최소 8자리 이상 입력해주세요."]}/>
                         </div>
                         <div className="input_area">
                             <p className="tit">비밀번호 확인</p>
@@ -112,7 +133,7 @@ class Signup extends Component {
                                         errorGuide={["한글, 영문, 숫자로 15자리까지 가능합니다."]}/>
                         </div>
                         <SignupTerm />
-                        <a href="#" className="btn_join" onClick={this.onSignup}>회원가입하기</a>
+                        <a href="#" className={this.signupBtnClass()} onClick={this.onSignup}>회원가입하기</a>
                     </div>
                 </div>
             </div>
@@ -120,4 +141,4 @@ class Signup extends Component {
     }
 }
 
-export default Signup;
+export default withRouter(Signup);

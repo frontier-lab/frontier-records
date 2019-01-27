@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { validate } from 'email-validator'
+
 import LoginInput from './login-input'
 import {isEmpty} from "lodash";
+
+import * as Alert from '../../common/alert';
+import { login } from '../../common/api/account';
+import { checkResultAndRedirect } from "../../common/api/common";
 
 class Login extends Component {
 
@@ -36,29 +41,11 @@ class Login extends Component {
         if (emailError || passwordError) {
             return ;
         }
-        let url = "/api/member/log-in?id=" + this.state.email + "&password=" + this.state.password;
-        console.log('request account url: ', url);
-        fetch(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-        }).then((response) => {
-            if (response.ok) {
-                return response.json()
-            } else {
-                throw response
-            }
-        }).then(result => {
-            if (!result.successful) {
-                alert(result.message)
-            } else {
-                console.log('account success')
-            }
-        }, (error) => {
-            alert(error.message);
 
-        });
+        login(this.state.email, this.state.password)
+            .then(res => res.ok? res.json(): (() => {throw res})())
+            .then(res => checkResultAndRedirect(res, "/", this.props.history)
+                , err => {console.log(err); Alert.error('알 수 없는 에러가 발생했습니다.')});
     };
 
     render() {
@@ -95,4 +82,4 @@ class Login extends Component {
     }
 }
 
-export default  Login;
+export default  withRouter(Login);

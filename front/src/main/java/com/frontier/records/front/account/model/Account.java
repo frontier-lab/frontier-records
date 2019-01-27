@@ -6,14 +6,11 @@ import com.frontier.records.front.account.exception.LogInException.DeletedAccoun
 import com.frontier.records.front.account.exception.LogInException.PasswordMissMatchedException;
 import com.frontier.records.front.account.exception.RegisterException.BadEmailFormatException;
 import com.frontier.records.front.account.exception.RegisterException.BadPasswordFormatException;
-import java.time.ZonedDateTime;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NonNull;
+
+import javax.persistence.*;
+import java.time.ZonedDateTime;
 
 @SuppressWarnings("CheckStyle")
 @Getter
@@ -34,9 +31,6 @@ public class Account {
 
     @Column(name = "name", nullable = false)
     private String name;
-
-    @Column(name = "nickname", nullable = false, unique = true)
-    private String id;
 
 //    @Column(name = "payco_id_no", nullable = true, unique = true)
 //    private PaycoAccount paycoAccount;
@@ -62,7 +56,6 @@ public class Account {
         account.email = registerRequest.getEmail();
         account.password = registerRequest.getPassword();
         account.name = registerRequest.getName();
-        account.id = registerRequest.getNickname();
         account.deleted = false;
         account.deactivated = false;
         account.registerDateTime = ZonedDateTime.now();
