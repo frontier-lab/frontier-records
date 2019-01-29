@@ -1,7 +1,6 @@
 package com.frontier.records.front.oauth.interceptor;
 
 import com.frontier.records.front.account.dto.LogInSession;
-import lombok.experimental.var;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -9,7 +8,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,7 +31,6 @@ public class OAuthCheckInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-        var newList = new ArrayList<String>();
         if (!(handler instanceof HandlerMethod)) {
             return true;
         }
