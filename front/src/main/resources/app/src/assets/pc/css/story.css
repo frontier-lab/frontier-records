@@ -80,7 +80,7 @@
 /* side_광고 */
 .ad_side{position:absolute;top:0;right:-150px;width:120px}
 .ad_side iframe {width:120px;height:600px;border:none;}
-.ad_side iframe.app_download{width:120px;height:140px;border-none;margin-bottom:15px;}
+.ad_side iframe.app_download{width:120px;height:140px;border:none;margin-bottom:15px;}
 /* side_랭킹 */
 .sidecnt.ranking{height:889px}
 .sidecnt.ranking li{height:78px}

@@ -169,3 +169,52 @@ input:focus,textarea:focus,button:focus{outline:none}
 .footer .menu li:last-child{padding-right:0}
 .footer .menu a{font-size:11px;color:#494b4e;line-height:13px}
 .footer .copyright{width:100%;padding-top:22px;font-size:10px;line-height:12px;text-align:center}
+
+.home .music_layer .title_layer .artist {border-bottom:1px solid rgba(0,0,0,0.15)}
+
+.rounded-2 {
+    border-radius: 2rem !important;
+}
+
+.text-150p {
+    font-size: 150%;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* audio player */
+.react-h5-audio-player .flex {
+    box-shadow: none !important;
+}
+.react-h5-audio-player .toggle-play-wrapper {
+    flex: 1 0 32px !important;
+}
+.react-h5-audio-player .toggle-play-wrapper .toggle-play-button {
+    background-color: black !important;
+}
+.react-h5-audio-player .toggle-play-wrapper .pause-icon {
+    box-shadow: black 7px 0px 0px 0px inset !important;
+}
+.react-h5-audio-player .progress-bar-wrapper {
+    padding-right: 0px !important;
+}
+.react-h5-audio-player .progress-bar-wrapper .indicator {
+    background-color: black !important;
+}
+.react-h5-audio-player .progress-bar-wrapper .audio-info .volume-controls {
+    display: none;
+}
+.react-h5-audio-player .progress-bar-wrapper .audio-info .volume-controls .volumn {
+    border-bottom-color: black !important;
+}
+.react-h5-audio-player .progress-bar-wrapper .audio-info .time {
+    width: 100%;
+}
+.react-h5-audio-player .progress-bar-wrapper .audio-info .time .current-time {
+    float: left;
+}
+.react-h5-audio-player .progress-bar-wrapper .audio-info .time .total-time {
+    float: right;
+}

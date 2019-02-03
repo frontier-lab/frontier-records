@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom'
+import {isEmpty} from "lodash";
 import { validate } from 'email-validator'
 
+
 import LoginInput from './login-input'
-import {isEmpty} from "lodash";
 
 import * as Alert from '../../common/alert';
 import { login } from '../../common/api/account';
@@ -50,7 +51,7 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="container login_cnt">
+            <div className="login_cnt">
                 <div className="content">
                     <h3 className="h3_tit">LOOPIN</h3>
                     <p className="txt">세상의 재미를 한눈에</p>

@@ -152,9 +152,6 @@ input:focus,textarea:focus,button:focus{outline:none}
 .tab_lst li .new{display:block;position:absolute;top:7px;right:-7px;width:11px;height:11px;font-size:0}
 .tab_lst li:first-child .new{right:-18px}
 .tab_lst li .new:after{top:0;left:0;width:11px;height:11px;background-position:-111px -14px}
-.typeblack .tab_lst{background:#101112;border-bottom:1px solid rgba(255,255,255,0.06)}
-.typeblack .tab_lst li a{color:#6b6d71}
-.typeblack .tab_lst li.on a{color:#ffffff}
 .fixed_tab .mylist .tab_wrap > ul{position:fixed !important;top:37px;left:0;z-index:100}
 
 /* footer */
