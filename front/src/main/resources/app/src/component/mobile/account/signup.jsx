@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
-
 import { isEqual, isEmpty } from 'lodash';
 import { validate } from 'email-validator';
 import LoginInput from "./login-input";
@@ -97,7 +96,7 @@ class Signup extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div>
                 <div className="content">
                     <div className="signup_content">
                         <div className="input_area">

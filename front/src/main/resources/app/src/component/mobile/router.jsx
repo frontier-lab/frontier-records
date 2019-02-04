@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 import Main from './main/main';
 import LoginMain from './account/login-main';
@@ -11,11 +11,10 @@ class Router extends Component {
         return (
             <div>
                 <Switch>
-                    <Route exact path="/" component={Main} />
-                    <Route path="/log-in" component={LoginMain}/>
-                    <Route path="/sign-up" component={SignupMain}/>
+                    <Route exact path="/log-in" component={LoginMain}/>
+                    <Route exact path="/sign-up" component={SignupMain}/>
+                    <Route path="/" component={Main} />
                 </Switch>
-
             </div>
         )
     }

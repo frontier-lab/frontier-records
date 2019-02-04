@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+library.add(fas, far);
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../assets/mobile/css/common_test.css';
 import '../../assets/mobile/css/member_test.css'
 
