@@ -5,4 +5,5 @@ logging:
   file:
     max-history: 7
   path: /home/irteam/apps/tomcat/frontier-records/api/logs
-  level: debug
+  level:
+    com.frontier-records: debug
