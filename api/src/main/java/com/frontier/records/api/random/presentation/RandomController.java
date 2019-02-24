@@ -6,8 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @SuppressWarnings("CheckStyle")
@@ -18,7 +18,7 @@ public class RandomController {
 
     private final RandomService randomService;
 
-    @PostMapping("/random")
+    @RequestMapping(value = "/random", method = {RequestMethod.GET, RequestMethod.POST})
     public PageImpl<RandomMusic> getRandomMusics(@PageableDefault(size = 2) Pageable pageable) {
         return randomService.getRandomMusic(pageable);
     }
