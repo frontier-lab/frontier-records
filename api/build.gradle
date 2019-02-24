@@ -1,0 +1,39 @@
+group rootProject.group
+
+ext {
+    guavaVersion = '24.1-jre'
+    reactorSpringCoreVersion = '2.0.4.RELEASE'
+}
+
+repositories {
+    maven { url "http://maven.twttr.com/" }
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter')
+
+    /* Web */
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-configuration-processor')
+
+    /* JPA */
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    /* Guava */
+    compile("com.google.guava:guava:${guavaVersion}")
+
+    /* H2 TODO: MySql로 바꿀 것 */
+    runtime('com.h2database:h2')
+
+    compile("io.projectreactor.spring:reactor-spring-core:${reactorSpringCoreVersion}")
+}
+
+
+bootRun {
+    sourceResources sourceSets.main
+    systemProperties = System.properties
+}
+
+bootJar {
+    mainClassName = 'com.frontier.records.api.ApiApplication'
+}

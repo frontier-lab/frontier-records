@@ -1,15 +1,14 @@
 package com.frontier.records.front.oauth.interceptor;
 
 import com.frontier.records.front.account.dto.LogInSession;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class OAuthCheckInterceptor extends HandlerInterceptorAdapter {
 
@@ -20,7 +19,7 @@ public class OAuthCheckInterceptor extends HandlerInterceptorAdapter {
         "0fb0e0b0-b734-11e4-8528-000000003e44",     // 귀영
         "1de09dc0-c34c-11e7-be2e-005056ac60a7");    // 재은
 
-    @Value("${redirect-urls.home}")
+    @Value("${redirect-urls.random}")
     private String homeUrl;
 
     @Value("${redirect-urls.log-in}")

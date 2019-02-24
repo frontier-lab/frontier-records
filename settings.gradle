@@ -1,4 +1,5 @@
 rootProject.name = 'frontier-records'
 include 'front'
 include 'admin'
+include 'api'
 
