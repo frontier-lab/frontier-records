@@ -12,6 +12,7 @@ public class RandomMusic {
     private Long musicId;
     private String musicUrl;
     private String musicTitle;
+    private String musicImage;
     private Long artistId;
     private String artistName;
     private String lyrics;

@@ -31,8 +31,9 @@ public class RandomService {
         }
         return new RandomMusic(
             musicId,
-            "https://www.naver.com",
+            "http://www.jaeeunyoo.com/media/sample.mp3",
             "제목제목",
+            "http://www.jaeeunyoo.com/image/sample.jpg",
             musicId,
             "무명의 가수",
             "가사가사가사가사가사가사가사가사가사가사가사가사가사가사가사가사가사가사가사가사가사가사가사가사가사가사가사",
