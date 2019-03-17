@@ -1,0 +1,22 @@
+## MyBatis
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+    lazy-loading-enabled: true
+    cache-enabled: false
+  mapper-locations: classpath:mapper/*.xml
+#  type-aliases-package: com.frontier.records.api
+
+spring:
+  datasource:
+    url: jdbc:mysql://www.jaeeunyoo.com:13306/frontier_records?useSSL=false
+    username: admin
+    password: admin123
+
+#  jackson:
+#    serialization:
+#      fail-on-empty-beans: false
+#    driver-class-name: com.mysql.jdbc.drvier
+#    hikari:

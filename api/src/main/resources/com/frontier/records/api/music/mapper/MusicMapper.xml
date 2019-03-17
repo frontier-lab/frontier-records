@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.frontier.records.api.music.mapper.MusicMapper">
+  <resultMap id="musicDetail" type="com.frontier.records.api.music.model.MusicDetail">
+    <result column="music_id" property="musicId"/>
+    <result column="music_title" property="musicTitle"/>
+    <result column="lyrics" property="lyrics"/>
+    <result column="music_url" property="musicUrl"/>
+    <result column="music_image" property="musicImage"/>
+    <result column="running_time" property="runningTime"/>
+    <result column="register_datetime" property="registerDateTime"/>
+    <result column="modify_datetime" property="modifyDateTime"/>
+    <result column="artist_id" property="artistId"/>
+    <result column="artist_name" property="artistName"/>
+    <result column="total_like_count" property="totalLikeCount"/>
+    <collection column="music_id" property="likeMoments" javaType="java.util.ArrayList" ofType="com.frontier.records.api.music.model.LikeMoment" select="selectAllLikeMomentsByMusicId"/>
+  </resultMap>
+
+  <select id="selectAllLikeMomentsByMusicId" parameterType="java.util.Map" resultType="com.frontier.records.api.music.model.LikeMoment">
+    SELECT
+      moment,
+      like_count
+    FROM like_moment
+    WHERE music_id = #{musicId}
+    ORDER By moment ASC
+  </select>
+
+  <select id="selectOneMusicDetail" resultMap="musicDetail">
+    SELECT
+      m.music_id AS music_id,
+      m.music_title AS music_title,
+      m.lyrics AS lyrics,
+      m.music_url AS music_url,
+      m.music_image AS music_image,
+      m.running_time AS running_time,
+      m.register_datetime AS register_datetime,
+      m.modify_datetime AS modify_datetime,
+      a.artist_id AS artist_id,
+      a.artist_name AS artist_name,
+      (SELECT count(*) FROM like_moment lm WHERE lm.music_id = m.music_id) AS total_like_count
+    FROM music m
+    LEFT OUTER JOIN artist a ON a.artist_id = m.artist_id
+      AND a.deleted = 0
+
+    WHERE 1=1
+    AND m.music_id = #{musicId}
+    AND m.deleted = 0
+    AND m.disabled = 0
+  </select>
+</mapper>
+

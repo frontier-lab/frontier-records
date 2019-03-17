@@ -19,7 +19,7 @@ public class OAuthCheckInterceptor extends HandlerInterceptorAdapter {
         "0fb0e0b0-b734-11e4-8528-000000003e44",     // 귀영
         "1de09dc0-c34c-11e7-be2e-005056ac60a7");    // 재은
 
-    @Value("${redirect-urls.random}")
+    @Value("${redirect-urls.recommend}")
     private String homeUrl;
 
     @Value("${redirect-urls.log-in}")
