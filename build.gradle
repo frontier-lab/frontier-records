@@ -49,9 +49,6 @@ subprojects {
         compile('org.springframework.boot:spring-boot-starter')
         testCompile('org.springframework.boot:spring-boot-starter-test')
 
-        // RandomBeans
-        testCompile "io.github.benas:random-beans:${randomBeansVersion}"
-
         // Webjars
         compile("org.webjars:webjars-locator:${webjarsLocatorVersion}")
 
