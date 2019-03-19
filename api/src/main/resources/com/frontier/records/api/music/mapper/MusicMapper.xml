@@ -15,6 +15,7 @@
     <result column="artist_name" property="artistName"/>
     <result column="total_like_count" property="totalLikeCount"/>
     <collection column="music_id" property="likeMoments" javaType="java.util.ArrayList" ofType="com.frontier.records.api.music.model.LikeMoment" select="selectAllLikeMomentsByMusicId"/>
+    <collection column="music_id" property="tags" javaType="java.util.ArrayList" ofType="com.frontier.records.api.tag.model.Tag" select="selectAllTagsByMusicId"/>
   </resultMap>
 
   <select id="selectAllLikeMomentsByMusicId" parameterType="java.util.Map" resultType="com.frontier.records.api.music.model.LikeMoment">
@@ -24,6 +25,16 @@
     FROM like_moment
     WHERE music_id = #{musicId}
     ORDER By moment ASC
+  </select>
+
+  <select id="selectAllTagsByMusicId" parameterType="java.util.Map" resultType="com.frontier.records.api.tag.model.Tag">
+    SELECT
+      t.tag_id,
+      t.tag_name
+    FROM tag_music tm
+    INNER JOIN tag t ON t.tag_id = tm.tag_id
+    WHERE music_id = #{musicId}
+    ORDER By tm.register_datetime ASC, tm.modify_datetime ASC, tm.tag_musiq_seq ASC
   </select>
 
   <select id="selectOneMusicDetail" resultMap="musicDetail">
