@@ -1,10 +1,10 @@
-package com.frontier.records.api.recommend.model;
+package com.frontier.records.api.music.model;
 
 import lombok.Data;
 
 @SuppressWarnings("CheckStyle")
 @Data
-public class RecommendMusic implements RecommendCard {
+public class MusicSummary {
 
     private Integer musicId;
 
@@ -14,13 +14,7 @@ public class RecommendMusic implements RecommendCard {
 
     private String musicImage;
 
-    private long runningTime;
-
-    private Integer artistId;
-
     private String artistName;
 
     private String artistImage;
-
-    private int totalLikeCount;
 }

@@ -13,6 +13,7 @@
     <result column="modify_datetime" property="modifyDateTime"/>
     <result column="artist_id" property="artistId"/>
     <result column="artist_name" property="artistName"/>
+    <result column="artist_image" property="artistImage"/>
     <result column="total_like_count" property="totalLikeCount"/>
     <collection column="music_id" property="likeMoments" javaType="java.util.ArrayList" ofType="com.frontier.records.api.music.model.LikeMoment" select="selectAllLikeMomentsByMusicId"/>
     <collection column="music_id" property="tags" javaType="java.util.ArrayList" ofType="com.frontier.records.api.tag.model.Tag" select="selectAllTagsByMusicId"/>
@@ -49,6 +50,7 @@
       m.modify_datetime AS modify_datetime,
       a.artist_id AS artist_id,
       a.artist_name AS artist_name,
+      a.artist_image AS artist_image,
       (SELECT count(*) FROM like_moment lm WHERE lm.music_id = m.music_id) AS total_like_count
     FROM music m
     LEFT OUTER JOIN artist a ON a.artist_id = m.artist_id
@@ -56,6 +58,40 @@
 
     WHERE 1=1
     AND m.music_id = #{musicId}
+    AND m.deleted = 0
+    AND m.disabled = 0
+  </select>
+
+  <select id="selectMusicSummariesByTag" resultType="com.frontier.records.api.music.model.MusicSummary">
+    SELECT
+      m.music_id AS musicId,
+      m.music_title AS musicTitle,
+      m.music_url AS musicUrl,
+      m.music_Image AS musicImage,
+      a.artist_name AS artistName,
+      a.artist_image AS artistImage
+    FROM music m
+    INNER JOIN tag_music tm ON tm.music_id = m.music_id
+      AND tm.tag_id = #{tagId}
+    INNER JOIN  artist a ON a.artist_id = m.artist_id
+      AND a.deleted = 0
+      AND a.disabled = 0
+    WHERE 1=1
+    AND m.deleted = 0
+    AND m.disabled = 0
+    ORDER BY m.register_datetime DESC
+    LIMIT #{startOffset}, #{size}
+  </select>
+
+  <select id="getMusicSummaryTotalCountByTag" resultType="long">
+    SELECT COUNT(1)
+    FROM music m
+    INNER JOIN tag_music tm ON tm.music_id = m.music_id
+      AND tm.tag_id = #{tagId}
+    INNER JOIN  artist a ON a.artist_id = m.artist_id
+      AND a.deleted = 0
+      AND a.disabled = 0
+    WHERE 1=1
     AND m.deleted = 0
     AND m.disabled = 0
   </select>

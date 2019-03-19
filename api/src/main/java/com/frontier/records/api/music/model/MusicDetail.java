@@ -38,6 +38,8 @@ public class MusicDetail {
 
     private String artistName;
 
+    private String artistImage;
+
     private int totalLikeCount;
 
     private List<LikeMoment> likeMoments;

@@ -1,6 +1,8 @@
 package com.frontier.records.api.music.mapper;
 
 import com.frontier.records.api.music.model.MusicDetail;
+import com.frontier.records.api.music.model.MusicSummary;
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -11,7 +13,7 @@ public interface MusicMapper {
 
     MusicDetail selectOneMusicDetail(@Param("musicId") Integer musicId);
 
-//    int selectLikeMomentCountByMusicId(@Param("musicId") Integer musicId);
+    List<MusicSummary> selectMusicSummariesByTag(@Param("tagId") Integer tagId, @Param("startOffset") long offset, @Param("size") int pageSize);
 
-//    List<LikeMoment> selectAllLikeMomentsByMusicId(@Param("musicId") Integer musicId);
+    long getMusicSummaryTotalCountByTag(@Param("tagId") Integer tagId);
 }

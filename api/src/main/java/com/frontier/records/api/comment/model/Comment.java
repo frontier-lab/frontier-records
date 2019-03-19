@@ -12,6 +12,7 @@ public class Comment {
     private String comment;
     private Integer writerId;
     private String writerName;
+    private String writerImage;
     private ZonedDateTime registerDateTime;
     private ZonedDateTime modifyDateTime;
 }

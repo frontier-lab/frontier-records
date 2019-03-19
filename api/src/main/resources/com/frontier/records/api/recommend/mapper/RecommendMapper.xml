@@ -9,10 +9,9 @@
       m.music_url AS musicUrl,
       m.music_image AS musicImage,
       m.running_time AS runningTime,
-
       a.artist_id AS artistId,
       a.artist_name AS artistName,
-
+      a.artist_image AS artistImage,
       (SELECT count(*) FROM like_moment lm WHERE lm.music_id = m.music_id) AS totalLikeCount
     FROM music m
 

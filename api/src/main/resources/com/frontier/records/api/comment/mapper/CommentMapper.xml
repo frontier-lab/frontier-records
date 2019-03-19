@@ -7,8 +7,9 @@
       c.comment_id AS commentId,
       c.parent_comment_id AS parentCommentId,
       c.comment AS comment,
-      c.writer_id AS writerId,
+      a.artist_id AS writerId,
       a.artist_name AS writerName,
+      a.artist_image AS writerImage,
       c.register_datetime AS registerDateTime,
       c.modify_datetime AS modifyDateTime
     FROM comment c
