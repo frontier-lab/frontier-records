@@ -22,7 +22,7 @@ public class MusicDetail {
 
     private String musicImage;
 
-    private long runningTime;
+    private int runningTime;
 
     private boolean disabled;
 

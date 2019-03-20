@@ -9,8 +9,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface CommentMapper {
-
-
+    
     List<Comment> selectMusicComments(@Param("musicId") Integer musicId,
                                       @Param("startOffset") long startOffset,
                                       @Param("size") int size);

@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 public class LikeMoment {
 
-    private long moment;
+    private int moment;
     private int likeCount;
 }
