@@ -25,4 +25,8 @@ public class MusicService {
     public long getMusicSummaryTotalCountByTag(Integer tagId) {
         return musicMapper.getMusicSummaryTotalCountByTag(tagId);
     }
+
+    public void putMusicPlayCount(Integer musicId) {
+        musicMapper.updateMusicPlayCount(musicId);
+    }
 }

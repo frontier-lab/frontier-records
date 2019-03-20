@@ -3,6 +3,7 @@ package com.frontier.records.api.recommend;
 import com.frontier.records.api.dto.PageResult;
 import com.frontier.records.api.recommend.model.RecommendMusic;
 import com.frontier.records.api.recommend.service.RecommendService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ public class RecommendRestController {
 
     private final RecommendService recommendService;
 
+    @ApiOperation(value = "추천 음악 조회")
     @GetMapping("/music")
     public PageResult<RecommendMusic> getRecommendCards(Pageable pageable) {
         return new PageResult<>(recommendService.getRecommendMusics(pageable), pageable, recommendService.getRecommendMusicTotalCount());

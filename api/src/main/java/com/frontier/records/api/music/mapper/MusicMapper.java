@@ -16,4 +16,6 @@ public interface MusicMapper {
     List<MusicSummary> selectMusicSummariesByTag(@Param("tagId") Integer tagId, @Param("startOffset") long offset, @Param("size") int pageSize);
 
     long getMusicSummaryTotalCountByTag(@Param("tagId") Integer tagId);
+
+    void updateMusicPlayCount(@Param("musicId") Integer musicId);
 }

@@ -97,5 +97,11 @@
     AND m.deleted = 0
     AND m.disabled = 0
   </select>
+
+  <update id="updateMusicPlayCount">
+    UPDATE music
+    SET play_count = play_count + 1
+    WHERE  music_id = #{musicId}
+  </update>
 </mapper>
 
