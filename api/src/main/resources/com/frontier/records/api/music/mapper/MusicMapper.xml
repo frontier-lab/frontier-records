@@ -9,6 +9,7 @@
     <result column="music_url" property="musicUrl"/>
     <result column="music_image" property="musicImage"/>
     <result column="running_time" property="runningTime"/>
+    <result column="play_count" property="playCount"/>
     <result column="register_datetime" property="registerDateTime"/>
     <result column="modify_datetime" property="modifyDateTime"/>
     <result column="artist_id" property="artistId"/>
@@ -46,6 +47,7 @@
       m.music_url AS music_url,
       m.music_image AS music_image,
       m.running_time AS running_time,
+      m.play_count AS play_count,
       m.register_datetime AS register_datetime,
       m.modify_datetime AS modify_datetime,
       a.artist_id AS artist_id,

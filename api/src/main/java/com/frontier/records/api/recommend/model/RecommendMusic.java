@@ -16,6 +16,8 @@ public class RecommendMusic implements RecommendCard {
 
     private int runningTime;
 
+    private int playCount;
+
     private Integer artistId;
 
     private String artistName;

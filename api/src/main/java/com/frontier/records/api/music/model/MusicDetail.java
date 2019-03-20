@@ -24,6 +24,8 @@ public class MusicDetail {
 
     private int runningTime;
 
+    private int playCount;
+
     private boolean disabled;
 
     private boolean deleted;
