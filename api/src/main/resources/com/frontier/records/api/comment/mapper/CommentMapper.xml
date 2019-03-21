@@ -2,6 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.frontier.records.api.comment.mapper.CommentMapper">
+  <select id="selectMusicComment" resultType="com.frontier.records.api.comment.model.Comment">
+    SELECT
+      c.comment_id AS commentId,
+      c.parent_comment_id AS parentCommentId,
+      c.comment AS comment,
+      a.artist_id AS writerId,
+      a.artist_name AS writerName,
+      a.artist_image AS writerImage,
+      c.register_datetime AS registerDateTime,
+      c.modify_datetime AS modifyDateTime
+    FROM comment c
+    LEFT OUTER JOIN artist a ON a.artist_id = c.writer_id
+    WHERE 1=1 AND c.comment_id = #{commentId}
+    AND c.deleted = 0
+  </select>
+
   <select id="selectMusicComments" resultType="com.frontier.records.api.comment.model.Comment">
     SELECT
       c.comment_id AS commentId,
@@ -28,4 +44,25 @@
     AND c.music_id = #{musicId}
     AND c.deleted = 0
   </select>
+
+  <insert id="insertComment" useGeneratedKeys="true" keyColumn="comment_id" keyProperty="commentId">
+    INSERT INTO comment (
+      parent_comment_id,
+      comment,
+      writer_id,
+      music_id,
+      artist_id,
+      register_datetime,
+      modify_datetime
+    )
+    VALUES (
+      #{parentCommentId},
+      #{comment},
+      #{writerId},
+      #{musicId},
+      #{artistId},
+      NOW(),
+      NOW()
+    )
+  </insert>
 </mapper>
