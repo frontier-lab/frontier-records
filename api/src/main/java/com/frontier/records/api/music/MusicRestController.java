@@ -1,7 +1,7 @@
 package com.frontier.records.api.music;
 
-import com.frontier.records.api.dto.PageResult;
-import com.frontier.records.api.dto.Result;
+import com.frontier.records.api.common.dto.PageResult;
+import com.frontier.records.api.common.dto.Result;
 import com.frontier.records.api.music.model.MusicDetail;
 import com.frontier.records.api.music.model.MusicSummary;
 import com.frontier.records.api.music.service.MusicService;
@@ -38,8 +38,8 @@ public class MusicRestController {
 
     @ApiOperation(value = "음악 재생 수 증가", notes = "음악 재생 시 호출")
     @PutMapping("/{musicId}/play-count")
-    public Result<Object> putMusicPlayCount(@PathVariable Integer musicId) {
+    public Result putMusicPlayCount(@PathVariable Integer musicId) {
         musicService.putMusicPlayCount(musicId);
-        return new Result<>(null);
+        return Result.EMPTY;
     }
 }

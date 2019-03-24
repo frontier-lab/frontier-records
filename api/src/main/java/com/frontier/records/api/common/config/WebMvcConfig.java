@@ -1,4 +1,4 @@
-package com.frontier.records.api.config;
+package com.frontier.records.api.common.config;
 
 import javax.servlet.Filter;
 import org.springframework.context.annotation.Bean;

@@ -1,10 +1,10 @@
 package com.frontier.records.api.comment;
 
+import com.frontier.records.api.comment.model.Comment;
 import com.frontier.records.api.comment.model.CommentWrite;
 import com.frontier.records.api.comment.service.CommentService;
-import com.frontier.records.api.dto.PageResult;
-import com.frontier.records.api.dto.Result;
-import com.frontier.records.api.model.Comment;
+import com.frontier.records.api.common.dto.PageResult;
+import com.frontier.records.api.common.dto.Result;
 import io.swagger.annotations.ApiOperation;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -42,7 +42,8 @@ public class CommentRestController {
 
     @ApiOperation(value = "댓글 삭제")
     @DeleteMapping("/{commentId}")
-    public Result<Comment> deleteComment(@PathVariable Integer commentId) {
-        return new Result<>(commentService.deleteComment(commentId));
+    public Result deleteComment(@PathVariable Integer commentId) {
+        commentService.deleteComment(commentId);
+        return Result.EMPTY;
     }
 }

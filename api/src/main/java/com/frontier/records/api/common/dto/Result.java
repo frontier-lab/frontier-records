@@ -1,9 +1,11 @@
-package com.frontier.records.api.dto;
+package com.frontier.records.api.common.dto;
 
 import lombok.Getter;
 
 @SuppressWarnings("CheckStyle")
-public class Result<Content> implements ResultType {
+public class Result<Content> {
+
+    public static final Result EMPTY = new Result<>(null);
 
     @Getter
     private final boolean successful;

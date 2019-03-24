@@ -14,11 +14,11 @@ public class RecommendService {
 
     private final RecommendMapper recommendMapper;
 
-    public List<RecommendMusic> getRecommendMusics(Pageable pageable) {
-        return recommendMapper.selectAllRecommendMusic(pageable.getOffset(), pageable.getPageSize());
+    public List<RecommendMusic> getRecentMusics(Pageable pageable) {
+        return recommendMapper.selectAllRecentMusics(pageable.getOffset(), pageable.getPageSize());
     }
 
-    public long getRecommendMusicTotalCount() {
-        return recommendMapper.selectOneRecommendMusicCount();
+    public long getRecentMusicTotalCount() {
+        return recommendMapper.selectRecentMusicTotalCount();
     }
 }

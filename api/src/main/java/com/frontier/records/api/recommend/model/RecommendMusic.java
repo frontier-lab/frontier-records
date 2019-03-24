@@ -4,7 +4,7 @@ import lombok.Data;
 
 @SuppressWarnings("CheckStyle")
 @Data
-public class RecommendMusic implements RecommendCard {
+public class RecommendMusic {
 
     private Integer musicId;
 

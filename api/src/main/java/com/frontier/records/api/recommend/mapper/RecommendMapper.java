@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RecommendMapper {
 
-    List<RecommendMusic> selectAllRecommendMusic(@Param("startOffset") long startOffset, @Param("size") int size);
+    List<RecommendMusic> selectAllRecentMusics(@Param("startOffset") long startOffset, @Param("size") int size);
 
-    long selectOneRecommendMusicCount();
+    long selectRecentMusicTotalCount();
 }

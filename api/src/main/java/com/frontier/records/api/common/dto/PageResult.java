@@ -1,4 +1,4 @@
-package com.frontier.records.api.dto;
+package com.frontier.records.api.common.dto;
 
 import java.util.Collections;
 import java.util.List;
@@ -7,7 +7,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 @SuppressWarnings("CheckStyle")
-public class PageResult<Content> extends PageImpl<Content> implements ResultType {
+public class PageResult<Content> extends PageImpl<Content> {
 
     @Getter
     private final boolean successful;

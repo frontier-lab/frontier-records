@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.frontier.records.api.comment.mapper.CommentMapper">
-  <select id="selectMusicComment" resultType="com.frontier.records.api.model.Comment">
+  <select id="selectMusicComment" resultType="com.frontier.records.api.comment.model.Comment">
     SELECT
       c.comment_id AS commentId,
       c.parent_comment_id AS parentCommentId,
@@ -18,7 +18,7 @@
     AND c.deleted = 0
   </select>
 
-  <select id="selectMusicComments" resultType="com.frontier.records.api.model.Comment">
+  <select id="selectMusicComments" resultType="com.frontier.records.api.comment.model.Comment">
     SELECT
       c.comment_id AS commentId,
       c.parent_comment_id AS parentCommentId,

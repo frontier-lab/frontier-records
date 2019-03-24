@@ -13,7 +13,10 @@ public interface MusicMapper {
 
     MusicDetail selectOneMusicDetail(@Param("musicId") Integer musicId);
 
-    List<MusicSummary> selectMusicSummariesByTag(@Param("tagId") Integer tagId, @Param("startOffset") long offset, @Param("size") int pageSize);
+    List<MusicSummary> selectMusicSummariesByTag(
+        @Param("tagId") Integer tagId,
+        @Param("startOffset") long offset,
+        @Param("size") int pageSize);
 
     long getMusicSummaryTotalCountByTag(@Param("tagId") Integer tagId);
 

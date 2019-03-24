@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.frontier.records.api.recommend.mapper.RecommendMapper">
-  <select id="selectAllRecommendMusic" resultType="com.frontier.records.api.recommend.model.RecommendMusic">
+  <select id="selectAllRecentMusics" resultType="com.frontier.records.api.recommend.model.RecommendMusic">
     SELECT
       m.music_id AS musicId,
       m.music_title AS musicTitle,
@@ -27,7 +27,7 @@
     LIMIT #{startOffset}, #{size}
   </select>
 
-  <select id="selectOneRecommendMusicCount" resultType="long">
+  <select id="selectRecentMusicTotalCount" resultType="long">
     SELECT COUNT(*)
     FROM music m
     WHERE 1=1

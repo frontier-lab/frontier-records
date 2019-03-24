@@ -1,4 +1,4 @@
-package com.frontier.records.api.config;
+package com.frontier.records.api.common.config;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
