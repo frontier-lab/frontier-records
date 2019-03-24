@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.frontier.records.api.comment.mapper.CommentMapper">
-  <select id="selectMusicComment" resultType="com.frontier.records.api.comment.model.Comment">
+  <select id="selectMusicComment" resultType="com.frontier.records.api.model.Comment">
     SELECT
       c.comment_id AS commentId,
       c.parent_comment_id AS parentCommentId,
@@ -18,7 +18,7 @@
     AND c.deleted = 0
   </select>
 
-  <select id="selectMusicComments" resultType="com.frontier.records.api.comment.model.Comment">
+  <select id="selectMusicComments" resultType="com.frontier.records.api.model.Comment">
     SELECT
       c.comment_id AS commentId,
       c.parent_comment_id AS parentCommentId,
@@ -33,7 +33,7 @@
     WHERE 1=1
     AND c.music_id = #{musicId}
     AND c.deleted = 0
-    ORDER BY IF(ISNULL(c.parent_comment_id), c.comment_id, c.parent_comment_id) DESC, c.register_datetime DESC
+    ORDER BY IF((ISNULL(c.parent_comment_id) OR c.parent_comment_id = 0), c.comment_id, c.parent_comment_id) DESC, c.register_datetime DESC
     LIMIT #{startOffset}, #{size}
   </select>
 
@@ -66,7 +66,9 @@
     )
   </insert>
 
-  <delete id="deleteComment">
-    DELETE FROM comment WHERE comment_id = #{commentId};
-  </delete>
+  <update id="deleteComment">
+    UPDATE comment
+    SET deleted = 1
+    WHERE comment_id = #{commentId}
+  </update>
 </mapper>
