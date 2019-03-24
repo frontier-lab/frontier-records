@@ -19,4 +19,6 @@ public interface CommentMapper {
     long selectMusicCommentsTotalCount(@Param("musicId") Integer musicId);
 
     void insertComment(Comment comment);
+
+    void deleteComment(@Param("commentId") Integer commentId);
 }

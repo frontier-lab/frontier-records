@@ -65,4 +65,8 @@
       NOW()
     )
   </insert>
+
+  <delete id="deleteComment">
+    DELETE FROM comment WHERE comment_id = #{commentId};
+  </delete>
 </mapper>

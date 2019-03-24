@@ -31,4 +31,9 @@ public class CommentService {
         commentMapper.insertComment(comment);
         return commentMapper.selectMusicComment(comment.getCommentId());
     }
+
+    public Comment deleteComment(Integer commentId) {
+        commentMapper.deleteComment(commentId);
+        return new Comment();
+    }
 }

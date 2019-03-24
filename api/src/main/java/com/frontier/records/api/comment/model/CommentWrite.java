@@ -8,6 +8,8 @@ import lombok.NonNull;
 @NoArgsConstructor
 public class CommentWrite {
 
+    private Integer commentId;
+
     private Integer parentCommentId;
 
     @NonNull

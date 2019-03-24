@@ -11,7 +11,7 @@ mybatis:
 
 spring:
   datasource:
-    url: jdbc:mysql://www.jaeeunyoo.com:13306/frontier_records?useSSL=false
+    url: jdbc:mysql://www.jaeeunyoo.com:13306/frontier_records?useSSL=false&characterEncoding=UTF-8
     username: admin
     password: admin123
 
